@@ -1,4 +1,7 @@
 import openai
+from pyfiglet import Figlet
+from termcolor import colored
+
 
 openai.api_key = 'YOUR_API_KEY'  # Replace with your OpenAI API key
 
@@ -26,6 +29,10 @@ def generate_caption_and_hashtags(post_text):
     hashtags = [tag.strip() for tag in response.choices[0].text.strip().split("\n")]
 
     return caption, hashtags
+
+# ASCII art title
+f = Figlet(font='slant')
+print(colored(f.renderText("InstaCaptAIn"), "green"))
 
 # Ask for the post text
 post_text = input("Enter the text for the Instagram post: ")
