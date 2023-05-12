@@ -30,20 +30,30 @@ def generate_caption_and_hashtags(post_text):
 
     return caption, hashtags
 
-# ASCII art title
+# ASCII art title with attribution
 f = Figlet(font='slant')
-print(colored(f.renderText("InstaCaptAIn"), "green"))
+ascii_art = f.renderText("InstaCaptAIn") + "by poealone"
+print(colored(ascii_art, "green"))
 
-# Ask for the post text
-post_text = input("Enter the text for the Instagram post: ")
+# Generate up to 5 posts
+num_posts = input("Enter the number of posts (1-5): ")
+num_posts = int(num_posts) if num_posts.isdigit() else 1
+num_posts = max(1, min(num_posts, 5))  # Limit the number of posts between 1 and 5
 
-caption, hashtags = generate_caption_and_hashtags(post_text)
+for i in range(num_posts):
+    print(colored(f"Post {i+1}", "cyan"))
 
-# Print the generated caption and hashtags
-print("Generated Caption:")
-print(caption)
+    # Ask for the post text
+    post_text = input("Enter the text for the Instagram post: ")
 
-print("\nGenerated Hashtags:")
-for hashtag in hashtags:
-    print(hashtag)
+    caption, hashtags = generate_caption_and_hashtags(post_text)
 
+    # Print the generated caption and hashtags
+    print(colored("Generated Caption:", "yellow"))
+    print(caption)
+
+    print(colored("\nGenerated Hashtags:", "yellow"))
+    for hashtag in hashtags:
+        print(colored(hashtag, "magenta"))
+
+    print()  # Add a blank line between posts
